@@ -12,6 +12,7 @@ import com.example.utilities.Waits;
 public class LoginPage extends basePage {
 
     private static final By EMAIL_INPUT = By.id("email");
+    private static final By EMAIL_INPUT2 = By.id("email");
     private static final By PASSWORD_INPUT = By.id("password");
     private static final By LOGIN_BUTTON = By.cssSelector("button.main__btn[type='submit']");
 
