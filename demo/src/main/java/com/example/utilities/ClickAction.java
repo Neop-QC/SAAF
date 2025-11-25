@@ -16,6 +16,12 @@ public class ClickAction {
 
     // Add click action methods here
     public void click(By locator) {
-        driver.findElement(locator).click();
+        try{
+            driver.findElement(locator).click();
+        }catch(Exception e){
+            throw new RuntimeException("Element is not clickable: " +locator + " : " +e.getMessage());
+        }
     }
 }
+
+

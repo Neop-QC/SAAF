@@ -13,7 +13,11 @@ public class SendKeys {
 
     // Add send keys methods here
     public void sendKeys(By locator, String text) {
-        driver.findElement(locator).sendKeys(text);
+        try{
+            driver.findElement(locator).sendKeys(text);
+        }catch(Exception e){
+            throw new RuntimeException("Element is not visible: " +locator + " : " +e.getMessage());
+        }
     }
     
 }

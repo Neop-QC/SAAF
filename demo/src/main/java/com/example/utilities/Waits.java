@@ -1,6 +1,7 @@
 package com.example.utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Waits {
@@ -16,17 +17,20 @@ public class Waits {
     }
 
     public void waitForVisibility(By locator) {
-        // Implementation for waiting until the element located by 'locator' is visible
-        wait.until(driver -> driver.findElement(locator).isDisplayed());
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (Exception e) {
+             throw new RuntimeException("Element is not visible: " +locator + " : " +e.getMessage());
+        }
     }
 
 
     public void waitForClickable(By locator) {
-        // Implementation for waiting until the element located by 'locator' is clickable
-        wait.until(driver -> {
-            var element = driver.findElement(locator);
-            return element.isDisplayed() && element.isEnabled();
-        });
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+        } catch (Exception e) {
+             throw new RuntimeException("Element is not clickable: " +locator + " : " +e.getMessage());
+        }
     }
 
 
